@@ -5,10 +5,11 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "npm run selenium-setup",
-    "start-dev": "NODE_ENV=development nodemon index.js",
+    "start-dev-server": "NODE_ENV=development nodemon index.js",
+    "start-dev-client": "webpack --mode=development --watch",
     "lint": "eslint '**/*.js'",
     "lint-watch": "nodemon --exec 'npm run lint --silent'",
-    "start": "npm run lint-watch & npm run start-dev",
+    "start": "npm-run-all --parallel lint-watch start-dev-client start-dev-server",
     "test": "mocha --reporter spec --exit \"server/**/*.spec.js\" \"client/**/*.spec.js\"",
     "selenium-setup": "selenium-standalone install",
     "selenium": "selenium-standalone start",
