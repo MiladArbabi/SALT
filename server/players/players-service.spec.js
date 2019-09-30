@@ -7,7 +7,7 @@ describe('The Players Service', () => {
   const allPlayersData = {
     count: 20,
     next: 'http://remote.api?page=4',
-    prev: 'http://remote.api?page=2',
+    previous: 'http://remote.api?page=2',
     results: [ playerJoe, playerJane ]
   };
   const teamJoe = { name: 'Barcelona' };
@@ -29,7 +29,7 @@ describe('The Players Service', () => {
     const expected = {
       count: 20,
       next: 4,
-      prev: 2,
+      previous: 2,
       results: [
         {
           name: 'joe',

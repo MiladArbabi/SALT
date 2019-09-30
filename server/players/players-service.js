@@ -10,7 +10,7 @@ PlayersService.prototype.all = function(callback) {
     callback({
       count: all.count,
       next: all.next ? all.next.split('=')[1] : null,
-      prev: pageNumber(all.prev),
+      previous: pageNumber(all.previous),
       results: results,
     });
   });
