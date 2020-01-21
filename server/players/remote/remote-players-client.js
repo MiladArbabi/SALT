@@ -9,11 +9,12 @@ function fetchAll(callback, page) {
 
   get(`${base}people/?page=${page}`, callback);
 }
-
+ 
 function getPlayer(id, callback) {
   get(base + 'people/' + id + '/', callback);
 }
 
+// Created function to get team
 function getTeamFor(id, callback) {
 
   getPlayer(id, (data) => {
