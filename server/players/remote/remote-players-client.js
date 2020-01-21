@@ -11,13 +11,14 @@ function getPlayer(id, callback) {
 }
 
 function getTeamFor(id, callback) {
-  getPlayer(id, (data)=> {
-    const homeworld = data.homeworld;
-    get(homeworld, (worldData) => {
+
+  getPlayer(id, (data) => {
+
+    get(data.homeworld, (worldData) => {
       callback(worldData);
     });
+
   });
-  console.log(id);
 }
 
 function get(path, callback) {
