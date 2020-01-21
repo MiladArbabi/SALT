@@ -1,4 +1,5 @@
 const url = require('url');
+const qs = require('querystring');
 
 function create(service) {
 
@@ -8,11 +9,13 @@ function create(service) {
       const path = normalize(req.url);
 
       if (path === '/') {
-
+        const parsed = url.parse(req.url);
+        const query = qs.parse(parsed.query);
+        
         switch(req.method) {
 
           case 'GET':
-            service.all(data => ok(res, data));
+            service.all(data => ok(res, data), query.page);
             break;
 
           default:

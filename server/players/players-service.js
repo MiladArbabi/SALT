@@ -2,7 +2,7 @@ function PlayersService(playersClient) {
   this.playersClient = playersClient;
 }
 
-PlayersService.prototype.all = function(callback) {
+PlayersService.prototype.all = function(callback, page) {
 
   this.playersClient.fetchAll(all => {
     const results = all.results.map(r => parsePerson(r));
@@ -13,7 +13,7 @@ PlayersService.prototype.all = function(callback) {
       previous: pageNumber(all.previous),
       results: results,
     });
-  });
+  }, page);
 };
 
 PlayersService.prototype.get = function(id, callback) {

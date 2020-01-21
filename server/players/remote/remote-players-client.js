@@ -2,8 +2,12 @@ const https = require('https');
 
 const base = 'https://swapi.co/api/';
 
-function fetchAll(callback) {
-  get(base + 'people/', callback);
+function fetchAll(callback, page) {
+  if (!page) {
+    page = 1;
+  }
+
+  get(`${base}people/?page=${page}`, callback);
 }
 
 function getPlayer(id, callback) {
@@ -24,7 +28,7 @@ function getTeamFor(id, callback) {
 function get(path, callback) {
 
   https.get(path, res => {
-    
+
     let data = '';
 
     res.on('data', chunk => {
