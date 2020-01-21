@@ -26,6 +26,9 @@ const loadMore = function() {
   page++;
 
   client.fetchPlayers(function(data) {
+    if (!data.next) {
+      document.querySelector('#players-list >button').style.display = 'none'; 
+    }
     players.appendTo(document.querySelector('#players-list ul'), data);
   }, page);
 }
