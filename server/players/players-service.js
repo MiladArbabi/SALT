@@ -18,9 +18,15 @@ PlayersService.prototype.all = function(callback) {
 
 PlayersService.prototype.get = function(id, callback) {
 
-  this.playersClient.getPlayer(id, data => {
+  const client = this.playersClient;
+  
+  this.playersClient.getPlayer(id, function(data) {
     const person = parseDetails(data);
-    callback(person);
+
+    client.getTeamFor(data.url, function(teamData) {
+      person.team = teamData.name;
+      callback(person);
+    });
   });
 };
 

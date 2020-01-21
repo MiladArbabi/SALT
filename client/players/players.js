@@ -6,6 +6,7 @@ function playerData(element, id, data) {
   const elements = [];
   elements.push(`<p>Name: ${data.name}</p>`);
   elements.push(`<p>Gender: ${data.gender}</p>`);
+  elements.push(`<p>Team: ${data.team}</p>`);
   element.innerHTML = elements.join('');
   window.history.pushState(null, null, `#id=${id}`);
 }
