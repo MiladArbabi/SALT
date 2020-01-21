@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "postinstall": "npm run selenium-setup",
+    "prestart-dev-server": "webpack --mode=development",
     "start-dev-server": "NODE_ENV=development nodemon index.js",
     "start-dev-client": "webpack --mode=development --watch",
     "lint": "eslint '**/*.js'",

@@ -10,6 +10,16 @@ function getPlayer(id, callback) {
   get(base + 'people/' + id + '/', callback);
 }
 
+function getTeamFor(id, callback) {
+  getPlayer(id, (data)=> {
+    const homeworld = data.homeworld;
+    get(homeworld, (worldData) => {
+      callback(worldData);
+    });
+  });
+  console.log(id);
+}
+
 function get(path, callback) {
 
   https.get(path, res => {
@@ -28,3 +38,4 @@ function get(path, callback) {
 
 module.exports.fetchAll = fetchAll;
 module.exports.getPlayer = getPlayer;
+module.exports.getTeamFor = getTeamFor;

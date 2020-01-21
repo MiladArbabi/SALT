@@ -23,7 +23,7 @@ PlayersService.prototype.get = function(id, callback) {
   this.playersClient.getPlayer(id, function(data) {
     const person = parseDetails(data);
 
-    client.getTeamFor(data.url, function(teamData) {
+    client.getTeamFor(parseEid(data.url), function(teamData) {
       person.team = teamData.name;
       callback(person);
     });

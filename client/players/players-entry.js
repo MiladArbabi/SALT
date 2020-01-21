@@ -7,7 +7,7 @@ const appendToDom =
 
 client.fetchPlayers(appendToDom);
 
-const addPlayerData = id => {
+const addPlayerData = function(id) {
   client.getPlayer(String(id), (json) => {
     players.playerData(document.querySelector('#player'), id, json);
   });
