@@ -3,8 +3,12 @@ const host = window.location.protocol + '//' + window.location.hostname;
 const port = window.location.port;
 const base = port ? host + ':' + port : host;
 
-function fetchPlayers(callback) {
-  fetch(base + config.resource_path)
+function fetchPlayers(callback, page) {
+  if (!page) {
+    page = 1;
+  }
+
+  fetch(base + config.resource_path + '?page=' + page)
     .then(res => res.json())
     .then(json => callback(json));
 }

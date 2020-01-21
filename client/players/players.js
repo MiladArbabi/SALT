@@ -1,5 +1,5 @@
 function appendTo(element, quote) {
-  element.innerHTML = asHtml(quote);
+  element.innerHTML += asHtml(quote);
 }
 
 function playerData(element, id, data) {
@@ -24,9 +24,8 @@ function ifIdExist(hash, callback) {
 }
 
 function asHtml(players) {
-  const elements = ['<ul>'];
+  const elements = [];
   players.results.forEach(u => elements.push(entry(u)));
-  elements.push('</ul>');
   return elements.join('');
 }
 

@@ -2,10 +2,18 @@ const players = require('./players');
 
 const client = require('./players-client');
 
-const appendToDom = 
-  data => players.appendTo(document.querySelector('#players-list'), data);
+const onInitialLoad = function(data) {
+  const nav = document.querySelector('#players-list');
 
-client.fetchPlayers(appendToDom);
+  const loadButton = document.createElement("button");
+  loadButton.setAttribute('onclick', 'loadMore();');
+  loadButton.innerText = 'Load more';
+  nav.appendChild(loadButton);
+  
+  players.appendTo(document.querySelector('#players-list ul'), data);
+}
+
+client.fetchPlayers(onInitialLoad);
 
 const addPlayerData = function(id) {
   client.getPlayer(String(id), (json) => {
@@ -13,7 +21,16 @@ const addPlayerData = function(id) {
   });
 };
 
+let page = 1;
+const loadMore = function() {
+  page++;
+
+  client.fetchPlayers(function(data) {
+    players.appendTo(document.querySelector('#players-list ul'), data);
+  }, page);
+}
+
 window.addPlayerData = addPlayerData;
+window.loadMore = loadMore;
 
 players.ifIdExist(window.location.hash, id => addPlayerData(id));
-
